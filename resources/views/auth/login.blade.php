@@ -58,7 +58,14 @@
           <i class="bi bi-lock-fill me-2"></i>New-App | Manager Login
         </h2>
 
-        <form action="{{ route('login') }}" method="post" id="loginForm">          
+        @if ($errors->has('auth')) <!-- Check for 'auth' error -->
+          <div class="alert alert-danger" role="alert">
+            <i class="bi bi-exclamation-triangle-fill me-2"></i>
+            {{ $errors->first('auth') }}
+          </div>
+        @endif
+
+        <form action="{{ route('login') }}" method="post" id="loginForm">
           @csrf
           <div class="mb-4">
             <div class="input-group">
@@ -74,7 +81,7 @@
                 required
               >
             </div>
-            @error('email')
+            @error('username') <!-- Changed from 'email' to 'username' -->
               <div class="text-danger mt-1">{{ $message }}</div>
             @enderror
           </div>
@@ -97,13 +104,6 @@
             @enderror
           </div>
 
-          @if (session('error'))
-            <div class="alert alert-danger" role="alert">
-              <i class="bi bi-exclamation-triangle-fill me-2"></i>
-              {{ session('error') }}
-            </div>
-          @endif
-
           <button
             type="submit"
             class="btn btn-primary w-100 mt-3"
@@ -116,18 +116,17 @@
       </div>
     </div>
   </div>
+
+  <script>
+    document.getElementById('loginForm').addEventListener('submit', function () {
+      const submitButton = document.getElementById('submitButton');
+      const spinner = document.getElementById('spinner');
+      const buttonText = document.getElementById('buttonText');
+
+      submitButton.disabled = true;
+      spinner.classList.remove('d-none');
+      buttonText.textContent = 'Logging in...';
+    });
+  </script>
 </body>
-
-<script>
-  document.getElementById('loginForm').addEventListener('submit', function () {
-    const submitButton = document.getElementById('submitButton');
-    const spinner = document.getElementById('spinner');
-    const buttonText = document.getElementById('buttonText');
-
-    submitButton.disabled = true;
-    spinner.classList.remove('d-none');
-    buttonText.textContent = 'Logging in...';
-  });
-</script>
 </html>
-
