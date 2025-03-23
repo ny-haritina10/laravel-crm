@@ -62,17 +62,6 @@ class TicketService
         $adjustedUsedBudget = $currentUsedBudget - $currentExpenseAmount + $amount;
         $remainingBudget = $totalAllocatedBudget - $currentUsedBudget;
 
-        Log::info("Ticket #$ticketId Budget Check", [
-            'newAmount' => $amount,
-            'currentUsedBudget' => $currentUsedBudget,
-            'totalAllocatedBudget' => $totalAllocatedBudget,
-            'currentExpenseAmount' => $currentExpenseAmount,
-            'adjustedUsedBudget' => $adjustedUsedBudget,
-            'remainingBudget' => $remainingBudget,
-            'exceedsBudget' => $adjustedUsedBudget > $totalAllocatedBudget,
-            'expenseDate' => $expenseDate
-        ]);
-
         // Check if expense exceeds budget
         if ($adjustedUsedBudget > $totalAllocatedBudget && $totalAllocatedBudget > 0) {
             return [

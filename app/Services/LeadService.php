@@ -62,17 +62,6 @@ class LeadService
         $adjustedUsedBudget = $currentUsedBudget - $currentExpenseAmount + $amount;
         $remainingBudget = $totalAllocatedBudget - $currentUsedBudget;
 
-        Log::info("Lead #$leadId Budget Check", [
-            'newAmount' => $amount,
-            'currentUsedBudget' => $currentUsedBudget,
-            'totalAllocatedBudget' => $totalAllocatedBudget,
-            'currentExpenseAmount' => $currentExpenseAmount,
-            'adjustedUsedBudget' => $adjustedUsedBudget,
-            'remainingBudget' => $remainingBudget,
-            'exceedsBudget' => $adjustedUsedBudget > $totalAllocatedBudget,
-            'expenseDate' => $expenseDate
-        ]);
-
         // Check if expense exceeds budget
         if ($adjustedUsedBudget > $totalAllocatedBudget && $totalAllocatedBudget > 0) {
             return [
