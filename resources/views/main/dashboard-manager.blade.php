@@ -184,7 +184,7 @@
             Manager Dashboard
           </h1>
           <div class="user-info">
-            <span class="d-none d-md-inline">Welcome, {{ session('username', 'Manager') }}</span>
+            <span class="d-none d-md-inline">Welcome, <strong>{{ session('username', 'Manager') }}</strong></span>
             <div class="avatar">
               <i class="bi bi-person-fill"></i>
             </div>
@@ -209,7 +209,7 @@
                     Welcome to your Dashboard
                   </h5>
                   <p class="card-text">
-                    Hello, {{ session('username', 'Manager') }}! This is your control center for managing all aspects of your business. Use the sidebar navigation to access different sections of the application.
+                    Hello, <strong>{{ session('username', 'Manager') }}</strong>! This is your control center for managing all aspects of your business. Use the sidebar navigation to access different sections of the application.
                   </p>
                 </div>
               </div>

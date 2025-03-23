@@ -151,6 +151,16 @@
                   @endforelse
                 </tbody>
               </table>
+
+              <!-- Pagination links -->
+              <div class="d-flex justify-content-between align-items-center mt-3">
+                <div>
+                    Showing {{ $leads->firstItem() }} to {{ $leads->lastItem() }} of {{ $leads->total() }} leads
+                </div>
+                <div>
+                    {{ $leads->links('pagination::bootstrap-5') }}
+                </div>
+              </div>
             </div>
           </div>
         </div>

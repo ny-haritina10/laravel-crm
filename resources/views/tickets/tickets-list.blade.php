@@ -42,6 +42,31 @@
     .card:hover {
       transform: translateY(-5px);
     }
+    
+    /* Pagination styling */
+    .pagination {
+      justify-content: center;
+      margin-top: 1.5rem;
+    }
+    
+    .page-item.active .page-link {
+      background-color: #2c3e50;
+      border-color: #2c3e50;
+    }
+    
+    .page-link {
+      color: #2c3e50;
+    }
+    
+    .page-link:hover {
+      color: #1a252f;
+    }
+    
+    /* Per page dropdown */
+    .per-page-dropdown {
+      display: inline-block;
+      margin-right: 15px;
+    }
   </style>
 </head>
 <body>
@@ -166,6 +191,16 @@
                   @endforelse
                 </tbody>
               </table>
+              
+              <!-- Pagination links -->
+              <div class="d-flex justify-content-between align-items-center mt-3">
+                <div>
+                    Showing {{ $tickets->firstItem() }} to {{ $tickets->lastItem() }} of {{ $tickets->total() }} tickets
+                </div>
+                <div>
+                    {{ $tickets->links('pagination::bootstrap-5') }}
+                </div>
+              </div>
             </div>
           </div>
         </div>

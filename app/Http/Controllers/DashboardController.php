@@ -7,12 +7,14 @@ use Illuminate\Support\Facades\Session;
 use App\Services\DashboardService;
 use App\Services\TicketService;
 use App\Services\LeadService;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class DashboardController extends Controller
 {
     protected $dashboardService;
     protected $ticketService;
     protected $leadService;
+    protected $perPage = 5; // Default items per page
 
     public function __construct(
         DashboardService $dashboardService,
@@ -60,7 +62,22 @@ class DashboardController extends Controller
 
         try {
             $tickets = $this->ticketService->getAllTickets($token);
-            return view('tickets.tickets-list', ['tickets' => $tickets]);
+            
+            // Create pagination from array
+            $page = $request->get('page', 1);
+            $perPage = $request->get('per_page', $this->perPage);
+            $offset = ($page - 1) * $perPage;
+            
+            $items = array_slice($tickets, $offset, $perPage, true);
+            $paginator = new LengthAwarePaginator(
+                $items, 
+                count($tickets), 
+                $perPage, 
+                $page, 
+                ['path' => $request->url(), 'query' => $request->query()]
+            );
+            
+            return view('tickets.tickets-list', ['tickets' => $paginator]);
         } catch (\Exception $e) {
             return view('tickets.tickets-list', [
                 'tickets' => [],
@@ -78,7 +95,22 @@ class DashboardController extends Controller
 
         try {
             $leads = $this->leadService->getAllLeads($token);
-            return view('leads.leads-list', ['leads' => $leads]);
+            
+            // Create pagination from array
+            $page = $request->get('page', 1);
+            $perPage = $request->get('per_page', $this->perPage);
+            $offset = ($page - 1) * $perPage;
+            
+            $items = array_slice($leads, $offset, $perPage, true);
+            $paginator = new LengthAwarePaginator(
+                $items, 
+                count($leads), 
+                $perPage, 
+                $page, 
+                ['path' => $request->url(), 'query' => $request->query()]
+            );
+            
+            return view('leads.leads-list', ['leads' => $paginator]);
         } catch (\Exception $e) {
             return view('leads.leads-list', [
                 'leads' => [],
