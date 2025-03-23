@@ -1,50 +1,133 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - Your Application</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Login - New App</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet">
+  <style>
+    .login-container {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    }
+
+    .card {
+      min-width: 400px;
+      border: none;
+      border-radius: 15px;
+    }
+
+    .card-title {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: #2c3e50;
+      font-weight: 600;
+    }
+
+    .form-control {
+      border-radius: 0 0.375rem 0.375rem 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .btn-primary {
+      background-color: #2c3e50;
+      border-color: #2c3e50;
+      padding: 12px;
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+
+    .btn-primary:hover {
+      background-color: #34495e;
+      border-color: #34495e;
+    }
+
+    .input-group-text {
+      background-color: #f8f9fa;
+    }
+  </style>
 </head>
 <body>
-    <div class="container mt-5">
-        <div class="row justify-content-center">
-            <div class="col-md-6">
-                <div class="card">
-                    <div class="card-header bg-primary text-white">
-                        <h3 class="mb-0">Login</h3>
-                    </div>
-                    <div class="card-body">
-                        @if ($errors->any())
-                            <div class="alert alert-danger">
-                                <ul class="mb-0">
-                                    @foreach ($errors->all() as $error)
-                                        <li>{{ $error }}</li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        @endif
+  <div class="login-container">
+    <div class="card shadow-lg">
+      <div class="card-body p-5">
+        <h2 class="card-title text-center mb-4">
+          <i class="bi bi-lock-fill me-2"></i>New-App | Manager Login
+        </h2>
 
-                        <form method="POST" action="{{ route('login') }}">
-                            @csrf
-                            <div class="mb-3">
-                                <label for="username" class="form-label">Username</label>
-                                <input type="text" class="form-control" id="username" name="username" value="{{ old('username') }}" required>
-                            </div>
-                            
-                            <div class="mb-3">
-                                <label for="password" class="form-label">Password</label>
-                                <input type="password" class="form-control" id="password" name="password" required>
-                            </div>
-                            
-                            <div class="d-grid">
-                                <button type="submit" class="btn btn-primary">Login</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
+        <form action="{{ route('login') }}" method="post" id="loginForm">          
+          @csrf
+          <div class="mb-4">
+            <div class="input-group">
+              <span class="input-group-text">
+                <i class="bi bi-person-fill"></i>
+              </span>
+              <input
+                type="text"
+                name="username"
+                class="form-control"
+                placeholder="Username or email"
+                value="{{ old('username') }}"
+                required
+              >
             </div>
-        </div>
+            @error('email')
+              <div class="text-danger mt-1">{{ $message }}</div>
+            @enderror
+          </div>
+
+          <div class="mb-4">
+            <div class="input-group">
+              <span class="input-group-text">
+                <i class="bi bi-key-fill"></i>
+              </span>
+              <input
+                type="password"
+                name="password"
+                class="form-control"
+                placeholder="Password"
+                required
+              >
+            </div>
+            @error('password')
+              <div class="text-danger mt-1">{{ $message }}</div>
+            @enderror
+          </div>
+
+          @if (session('error'))
+            <div class="alert alert-danger" role="alert">
+              <i class="bi bi-exclamation-triangle-fill me-2"></i>
+              {{ session('error') }}
+            </div>
+          @endif
+
+          <button
+            type="submit"
+            class="btn btn-primary w-100 mt-3"
+            id="submitButton"
+          >
+            <span id="spinner" class="spinner-border spinner-border-sm me-2 d-none" role="status"></span>
+            <span id="buttonText">Login</span>
+          </button>
+        </form>
+      </div>
     </div>
+  </div>
 </body>
+
+<script>
+  document.getElementById('loginForm').addEventListener('submit', function () {
+    const submitButton = document.getElementById('submitButton');
+    const spinner = document.getElementById('spinner');
+    const buttonText = document.getElementById('buttonText');
+
+    submitButton.disabled = true;
+    spinner.classList.remove('d-none');
+    buttonText.textContent = 'Logging in...';
+  });
+</script>
 </html>
+

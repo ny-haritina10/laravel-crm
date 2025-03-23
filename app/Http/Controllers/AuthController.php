@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
 class AuthController extends Controller
@@ -29,7 +28,6 @@ class AuthController extends Controller
         ]);
 
         try {
-            // Call the CRM API for authentication
             $response = Http::post($this->crmApiUrl . '/api/auth/login_api', [
                 'username' => $request->username,
                 'password' => $request->password,
@@ -38,33 +36,29 @@ class AuthController extends Controller
             if ($response->successful()) {
                 $userData = $response->json();
 
-                // Store user data in session
-                session([
-                    'user_id' => $userData['userId'],
-                    'username' => $userData['username'],
-                    'email' => $userData['email'],
-                    'roles' => $userData['roles'],
-                    'token' => $userData['token'],
-                    'is_logged_in' => true
-                ]);
+                // Check if required data exists in the response
+                if (isset($userData['userId']) && isset($userData['token'])) {
+                    session([
+                        'user_id' => $userData['userId'],
+                        'username' => $userData['username'],
+                        'email' => $userData['email'] ?? null,
+                        'roles' => $userData['roles'] ?? [],
+                        'token' => $userData['token'],
+                        'is_logged_in' => true,
+                    ]);
 
-                // Check if user has manager role
-                $isManager = in_array('ROLE_MANAGER', $userData['roles']);
-                
-                // Redirect based on role
-                if ($isManager) {
-                    return redirect()->route('dashboard.manager');
-                } else {
-                    return redirect()->route('dashboard');
+                    $isManager = in_array('ROLE_MANAGER', $userData['roles'] ?? []);
+                    return $isManager
+                        ? redirect()->route('dashboard.manager')
+                        : redirect()->route('dashboard');
                 }
+
+                return back()->withErrors(['auth' => 'Invalid response from CRM API']);
             }
 
-            // Handle different error responses
-            if ($response->status() === 401) {
-                return back()->withErrors(['auth' => 'Invalid credentials']);
-            } else {
-                return back()->withErrors(['auth' => 'Authentication failed: ' . $response->body()]);
-            }
+            return back()->withErrors(['auth' => $response->status() === 401
+                ? 'Invalid credentials'
+                : 'Authentication failed: ' . $response->body()]);
         } catch (\Exception $e) {
             return back()->withErrors(['auth' => 'Error connecting to CRM: ' . $e->getMessage()]);
         }
