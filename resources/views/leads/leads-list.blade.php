@@ -50,6 +50,7 @@
                     <th>Expense Amount</th>
                     <th>Expense Date</th>
                     <th>Created At</th>
+                    <th>Action</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -62,10 +63,18 @@
                       <td>{{ $lead['expense']['amount'] ?? 'N/A' }}</td>
                       <td>{{ $lead['expense']['expenseDate'] ?? 'N/A' }}</td>
                       <td>{{ $lead['createdAt'] }}</td>
+                      <td>
+                        <a href="{{ route('dashboard.lead.update', $lead['leadId']) }}" class="btn btn-sm btn-primary">Update</a>
+                        <form action="{{ route('dashboard.lead.delete', $lead['leadId']) }}" method="POST" style="display:inline;">
+                          @csrf
+                          @method('DELETE')
+                          <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?')">Delete</button>
+                        </form>
+                      </td>
                     </tr>
                   @empty
                     <tr>
-                      <td colspan="7" class="text-center">No leads found</td>
+                      <td colspan="8" class="text-center">No leads found</td>
                     </tr>
                   @endforelse
                 </tbody>

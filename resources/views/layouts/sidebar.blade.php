@@ -1,12 +1,12 @@
 <div class="sidebar d-flex flex-column flex-shrink-0 p-3">
-  <a href="#" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+  <a href="{{ route('dashboard.manager')}}" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
     <i class="bi bi-bootstrap-fill me-2"></i>
     <span class="fs-4">New-App</span>
   </a>
   <hr>
   <ul class="nav nav-pills flex-column mb-auto">
     <li class="nav-item">
-      <a href="#" class="nav-link text-white {{ request()->routeIs('dashboard') ? 'active' : '' }}">
+      <a href="{{ route('dashboard.manager')}}" class="nav-link text-white {{ request()->routeIs('dashboard') ? 'active' : '' }}">
         <i class="bi bi-house-door-fill me-2"></i>
         Dashboard
       </a>

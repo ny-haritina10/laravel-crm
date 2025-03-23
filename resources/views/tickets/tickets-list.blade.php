@@ -49,7 +49,7 @@
                     <th>Priority</th>
                     <th>Expense Amount</th>
                     <th>Expense Date</th>
-                    <th>Created At</th>
+                    <th>Action</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -61,11 +61,18 @@
                       <td>{{ $ticket['priority'] }}</td>
                       <td>{{ $ticket['expense']['amount'] ?? 'N/A' }}</td>
                       <td>{{ $ticket['expense']['expenseDate'] ?? 'N/A' }}</td>
-                      <td>{{ $ticket['createdAt'] }}</td>
+                      <td>
+                        <a href="{{ route('dashboard.ticket.update', $ticket['ticketId']) }}" class="btn btn-sm btn-primary">Update</a>
+                        <form action="{{ route('dashboard.ticket.delete', $ticket['ticketId']) }}" method="POST" style="display:inline;">
+                          @csrf
+                          @method('DELETE')
+                          <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?')">Delete</button>
+                        </form>
+                      </td>
                     </tr>
                   @empty
                     <tr>
-                      <td colspan="7" class="text-center">No tickets found</td>
+                      <td colspan="8" class="text-center">No tickets found</td>
                     </tr>
                   @endforelse
                 </tbody>
