@@ -42,5 +42,7 @@ Route::middleware(['crm.auth'])->group(function () {
         Route::delete('/dashboard/lead/{leadId}/delete', [DashboardController::class, 'deleteLeadExpense'])->name('dashboard.lead.delete');
         Route::get('/dashboard/lead/{leadId}/confirm', [DashboardController::class, 'showLeadConfirm'])->name('dashboard.lead.confirm');
         Route::post('/dashboard/lead/{leadId}/confirm', [DashboardController::class, 'confirmLeadExpense'])->name('dashboard.lead.confirm.submit');
+
+        Route::get('/dashboard/analytics', [DashboardController::class, 'analytics'])->name('dashboard.analytics');
     });
 });

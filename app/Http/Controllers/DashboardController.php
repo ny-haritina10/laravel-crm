@@ -360,4 +360,14 @@ class DashboardController extends Controller
             return redirect()->route('dashboard.leads')->withErrors(['error' => 'Error: ' . $e->getMessage()]);
         }
     }
+
+    public function analytics()
+    {
+        $token = Session::get('token');
+        if (!$token) {
+            return redirect()->route('login')->withErrors(['auth' => 'Please login first']);
+        }
+
+        return view('main.dashboard-analytics');
+    }
 }

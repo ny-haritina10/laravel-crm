@@ -21,17 +21,22 @@
         </a>
       </li>
       <li class="nav-item mb-2">
+        <a href="{{ route('dashboard.analytics') }}" class="nav-link {{ request()->routeIs('dashboard.analytics') ? 'active' : '' }}">
+          <i class="bi bi-bar-chart-line-fill"></i>
+          <span>Analytics</span>
+        </a>
+      </li>
+      <li class="nav-item mb-2">
         <a href="{{ route('dashboard.tickets') }}" class="nav-link {{ request()->routeIs('dashboard.tickets') ? 'active' : '' }}">
           <i class="bi bi-ticket-detailed-fill me-2"></i>
           <span>Tickets</span>
-          <span class="badge rounded-pill ms-auto">{{ $totalTickets ?? 0 }}</span>
+          <span class="badge rounded-pill ms-auto"></span>
         </a>
       </li>
       <li class="nav-item mb-2">
         <a href="{{ route('dashboard.leads') }}" class="nav-link {{ request()->routeIs('dashboard.leads') ? 'active' : '' }}">
           <i class="bi bi-people-fill me-2"></i>
           <span>Leads</span>
-          <span class="badge rounded-pill ms-auto">{{ $totalLeads ?? 0 }}</span>
         </a>
       </li>
     </ul>
