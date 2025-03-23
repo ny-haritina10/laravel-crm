@@ -27,20 +27,33 @@
       min-height: calc(100vh - 70px);
     }
 
-    .card {
+    .stat-card {
       border-radius: 15px;
       border: none;
+      transition: transform 0.2s;
     }
 
-    .card-title {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    .stat-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .stat-icon {
+      font-size: 2rem;
+      color: #fff;
+      background: linear-gradient(45deg, #2c3e50, #3498db);
+      padding: 15px;
+      border-radius: 10px;
+    }
+
+    .stat-number {
+      font-size: 1.8rem;
+      font-weight: bold;
       color: #2c3e50;
-      margin-bottom: 0.5rem;
     }
 
-    .card-text {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      color: #34495e;
+    .stat-label {
+      color: #7f8c8d;
+      font-size: 1.1rem;
     }
   </style>
 </head>
@@ -63,6 +76,10 @@
       </header>
       <main class="p-4">
         <div class="container-fluid">
+          @if(isset($error))
+            <div class="alert alert-danger">{{ $error }}</div>
+          @endif
+
           <div class="row">
             <div class="col-md-12">
               <div class="card">
@@ -74,7 +91,38 @@
                 </div>
               </div>
             </div>
+          </div> <br>
+          
+          <div class="row g-4 mb-4">
+            <div class="col-md-12 col-lg-6">
+              <div class="card stat-card shadow-sm">
+                <div class="card-body d-flex align-items-center">
+                  <div class="stat-icon me-3">
+                    <i class="bi bi-ticket-detailed"></i>
+                  </div>
+                  <div>
+                    <div class="stat-number">{{ $totalTickets }}</div>
+                    <div class="stat-label">Total Tickets</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-12 col-lg-6">
+              <div class="card stat-card shadow-sm">
+                <div class="card-body d-flex align-items-center">
+                  <div class="stat-icon me-3">
+                    <i class="bi bi-person-lines-fill"></i>
+                  </div>
+                  <div>
+                    <div class="stat-number">{{ $totalLeads }}</div>
+                    <div class="stat-label">Total Leads</div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
+
+          
         </div>
       </main>
     </div>

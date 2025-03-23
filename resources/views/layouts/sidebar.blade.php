@@ -11,34 +11,6 @@
         Dashboard
       </a>
     </li>
-    <li class="nav-item">
-      <a href="#" class="nav-link text-white {{ request()->routeIs('paiements') ? 'active' : '' }}">
-        <i class="bi bi-cash-stack me-2"></i>
-        Liste des Paiements
-      </a>
-    </li>
-    <li class="nav-item">
-      <div class="dropdown">
-        <a
-          class="nav-link text-white dropdown-toggle"
-          href="#"
-          id="importDropdown"
-          role="button"
-          data-bs-toggle="dropdown"
-          aria-expanded="false"
-        >
-          <i class="bi bi-file-earmark-arrow-up-fill me-2"></i>
-          Import CSV
-        </a>
-        <ul class="dropdown-menu" aria-labelledby="importDropdown">
-          <li>
-            <a href="#" class="dropdown-item text-dark">
-              <i class="bi bi-building me-2"></i>Espaces
-            </a>
-          </li>
-        </ul>
-      </div>
-    </li>
   </ul>
   <hr>
   <div class="logout">
