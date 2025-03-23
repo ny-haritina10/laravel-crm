@@ -34,8 +34,13 @@ Route::middleware(['crm.auth'])->group(function () {
         Route::get('/dashboard/ticket/{ticketId}/update', [DashboardController::class, 'showTicketUpdateForm'])->name('dashboard.ticket.update');
         Route::put('/dashboard/ticket/{ticketId}/update', [DashboardController::class, 'updateTicketExpense'])->name('dashboard.ticket.update.submit');
         Route::delete('/dashboard/ticket/{ticketId}/delete', [DashboardController::class, 'deleteTicketExpense'])->name('dashboard.ticket.delete');
+        Route::get('/dashboard/ticket/{ticketId}/confirm', [DashboardController::class, 'showTicketConfirm'])->name('dashboard.ticket.confirm');
+        Route::post('/dashboard/ticket/{ticketId}/confirm', [DashboardController::class, 'confirmTicketExpense'])->name('dashboard.ticket.confirm.submit');
+        
         Route::get('/dashboard/lead/{leadId}/update', [DashboardController::class, 'showLeadUpdateForm'])->name('dashboard.lead.update');
         Route::put('/dashboard/lead/{leadId}/update', [DashboardController::class, 'updateLeadExpense'])->name('dashboard.lead.update.submit');
         Route::delete('/dashboard/lead/{leadId}/delete', [DashboardController::class, 'deleteLeadExpense'])->name('dashboard.lead.delete');
+        Route::get('/dashboard/lead/{leadId}/confirm', [DashboardController::class, 'showLeadConfirm'])->name('dashboard.lead.confirm');
+        Route::post('/dashboard/lead/{leadId}/confirm', [DashboardController::class, 'confirmLeadExpense'])->name('dashboard.lead.confirm.submit');
     });
 });
