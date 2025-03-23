@@ -11,34 +11,21 @@
   
   <div class="nav-section px-3">
     <div class="nav-section-header">
-      <span>Main Navigation</span>
+        <span>Main Navigation</span>
     </div>
     <ul class="nav-menu nav flex-column">
-      <li class="nav-item mb-2">
-        <a href="{{ route('dashboard.manager')}}" class="nav-link {{ request()->routeIs('dashboard') ? 'active' : '' }}">
-          <i class="bi bi-grid-1x2-fill me-2"></i>
-          <span>Dashboard</span>
-        </a>
-      </li>
-      <li class="nav-item mb-2">
-        <a href="{{ route('dashboard.analytics') }}" class="nav-link {{ request()->routeIs('dashboard.analytics') ? 'active' : '' }}">
-          <i class="bi bi-bar-chart-line-fill"></i>
-          <span>Analytics</span>
-        </a>
-      </li>
-      <li class="nav-item mb-2">
-        <a href="{{ route('dashboard.tickets') }}" class="nav-link {{ request()->routeIs('dashboard.tickets') ? 'active' : '' }}">
-          <i class="bi bi-ticket-detailed-fill me-2"></i>
-          <span>Tickets</span>
-          <span class="badge rounded-pill ms-auto"></span>
-        </a>
-      </li>
-      <li class="nav-item mb-2">
-        <a href="{{ route('dashboard.leads') }}" class="nav-link {{ request()->routeIs('dashboard.leads') ? 'active' : '' }}">
-          <i class="bi bi-people-fill me-2"></i>
-          <span>Leads</span>
-        </a>
-      </li>
+        <li class="nav-item mb-2">
+            <a href="{{ route('dashboard.manager') }}" class="nav-link {{ request()->routeIs('dashboard') ? 'active' : '' }}">
+                <i class="bi bi-grid-1x2-fill me-2"></i>
+                <span>Dashboard</span>
+            </a>
+        </li>
+        <li class="nav-item mb-2">
+            <a href="{{ route('alerte-rate.index') }}" class="nav-link {{ request()->routeIs('alerte-rate.index') ? 'active' : '' }}">
+                <i class="bi bi-bell-fill me-2"></i>
+                <span>Alerte Rates</span>
+            </a>
+        </li>
     </ul>
   </div>
   

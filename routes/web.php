@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\AlerteRateController;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,6 +44,9 @@ Route::middleware(['crm.auth'])->group(function () {
         Route::get('/dashboard/lead/{leadId}/confirm', [DashboardController::class, 'showLeadConfirm'])->name('dashboard.lead.confirm');
         Route::post('/dashboard/lead/{leadId}/confirm', [DashboardController::class, 'confirmLeadExpense'])->name('dashboard.lead.confirm.submit');
 
-        Route::get('/dashboard/analytics', [DashboardController::class, 'analytics'])->name('dashboard.analytics');
+        Route::get('/alerte-rate/{id}/edit', [AlerteRateController::class, 'edit'])->name('alerte-rate.edit');
+        Route::put('/alerte-rate/{id}', [AlerteRateController::class, 'update'])->name('alerte-rate.update');
+        Route::delete('/alerte-rate/{id}', [AlerteRateController::class, 'destroy'])->name('alerte-rate.destroy');
+        Route::get('/alerte-rate', [AlerteRateController::class, 'index'])->name('alerte-rate.index');
     });
 });
