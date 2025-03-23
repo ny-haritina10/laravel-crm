@@ -54,4 +54,64 @@ class DashboardController extends Controller
             ]);
         }
     }
+
+    public function ticketsList(Request $request)
+    {
+        try {
+            $token = Session::get('token');
+            if (!$token) {
+                return redirect()->route('login')->withErrors(['auth' => 'Please login first']);
+            }
+
+            $response = Http::withHeaders([
+                'Authorization' => 'Bearer ' . $token,
+                'Accept' => 'application/json'
+            ])->get($this->crmApiUrl . '/api/expenses/tickets');
+
+            if ($response->successful()) {
+                $tickets = $response->json();
+                return view('tickets.tickets-list', ['tickets' => $tickets]);
+            }
+
+            return view('tickets.tickets-list', [
+                'tickets' => [],
+                'error' => 'Failed to fetch tickets: ' . $response->body()
+            ]);
+        } catch (\Exception $e) {
+            return view('tickets.tickets-list', [
+                'tickets' => [],
+                'error' => 'Error connecting to CRM: ' . $e->getMessage()
+            ]);
+        }
+    }
+
+    public function leadsList(Request $request)
+    {
+        try {
+            $token = Session::get('token');
+            if (!$token) {
+                return redirect()->route('login')->withErrors(['auth' => 'Please login first']);
+            }
+
+            $response = Http::withHeaders([
+                'Authorization' => 'Bearer ' . $token,
+                'Accept' => 'application/json'
+            ])->get($this->crmApiUrl . '/api/expenses/leads');
+
+            if ($response->successful()) {
+                $leads = $response->json();
+                return view('leads.leads-list', ['leads' => $leads]);
+            }
+
+            return view('leads.leads-list', [
+                'leads' => [],
+                'error' => 'Failed to fetch leads: ' . $response->body()
+            ]);
+        } catch (\Exception $e) {
+            return view('leads.leads-list', [
+                'leads' => [],
+                'error' => 'Error connecting to CRM: ' . $e->getMessage()
+            ]);
+        }
+    }
 }

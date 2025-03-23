@@ -28,5 +28,9 @@ Route::middleware(['crm.auth'])->group(function () {
     // Manager-only routes
     Route::middleware(['crm.role.manager'])->group(function () {
         Route::get('/dashboard/manager', [DashboardController::class, 'managerDashboard'])->name('dashboard.manager');
+        Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+        Route::get('/dashboard/manager', [DashboardController::class, 'managerDashboard'])->name('dashboard.manager');
+        Route::get('/dashboard/tickets', [DashboardController::class, 'ticketsList'])->name('dashboard.tickets');
+        Route::get('/dashboard/leads', [DashboardController::class, 'leadsList'])->name('dashboard.leads');
     });
 });

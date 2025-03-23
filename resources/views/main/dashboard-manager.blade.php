@@ -57,6 +57,7 @@
     }
   </style>
 </head>
+
 <body>
   <div class="d-flex">
     @include('layouts.sidebar')
@@ -96,36 +97,41 @@
           <div class="row g-4 mb-4">
             <div class="col-md-12 col-lg-6">
               <div class="card stat-card shadow-sm">
-                <div class="card-body d-flex align-items-center">
-                  <div class="stat-icon me-3">
-                    <i class="bi bi-ticket-detailed"></i>
+                <div class="card-body d-flex align-items-center justify-content-between">
+                  <div class="d-flex align-items-center">
+                    <div class="stat-icon me-3">
+                      <i class="bi bi-ticket-detailed"></i>
+                    </div>
+                    <div>
+                      <div class="stat-number">{{ $totalTickets }}</div>
+                      <div class="stat-label">Total Tickets</div>
+                    </div>
                   </div>
-                  <div>
-                    <div class="stat-number">{{ $totalTickets }}</div>
-                    <div class="stat-label">Total Tickets</div>
-                  </div>
+                  <a href="{{ route('dashboard.tickets') }}" class="btn btn-primary btn-sm">Details</a>
                 </div>
               </div>
             </div>
             <div class="col-md-12 col-lg-6">
               <div class="card stat-card shadow-sm">
-                <div class="card-body d-flex align-items-center">
-                  <div class="stat-icon me-3">
-                    <i class="bi bi-person-lines-fill"></i>
+                <div class="card-body d-flex align-items-center justify-content-between">
+                  <div class="d-flex align-items-center">
+                    <div class="stat-icon me-3">
+                      <i class="bi bi-person-lines-fill"></i>
+                    </div>
+                    <div>
+                      <div class="stat-number">{{ $totalLeads }}</div>
+                      <div class="stat-label">Total Leads</div>
+                    </div>
                   </div>
-                  <div>
-                    <div class="stat-number">{{ $totalLeads }}</div>
-                    <div class="stat-label">Total Leads</div>
-                  </div>
+                  <a href="{{ route('dashboard.leads') }}" class="btn btn-primary btn-sm">Details</a>
                 </div>
               </div>
             </div>
           </div>
-
-          
         </div>
       </main>
     </div>
   </div>
 </body>
+
 </html>
