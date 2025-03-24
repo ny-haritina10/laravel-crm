@@ -23,7 +23,6 @@
         <div class="d-flex justify-content-between align-items-center">
           <h1 class="mb-0">
             <i class="bi bi-person-lines-fill me-2"></i>
-            Update Lead Expense
           </h1>
           <div class="user-info">
             <span class="me-2">Welcome, {{ session('username', 'Manager') }}</span>
@@ -40,7 +39,7 @@
           <div class="form-container">
             <div class="card">
               <div class="card-body">
-                <h5 class="card-title">Lead #{{ $lead['leadId'] }} - {{ $lead['name'] }}</h5>
+                <h5 class="card-title">Update Lead #{{ $lead['leadId'] }} - {{ $lead['name'] }}</h5>
                 <form action="{{ route('dashboard.lead.update.submit', $lead['leadId']) }}" method="POST">
                   @csrf
                   @method('PUT')

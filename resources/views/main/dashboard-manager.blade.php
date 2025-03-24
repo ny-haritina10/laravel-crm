@@ -250,7 +250,6 @@
         <div class="d-flex justify-content-between align-items-center">
           <h1>
             <i class="bi bi-layout-text-window-reverse me-2"></i>
-            Manager Dashboard
           </h1>
           <div class="user-info">
             <span class="d-none d-md-inline">Welcome, <strong>{{ session('username', 'Manager') }}</strong></span>
@@ -261,7 +260,7 @@
         </div>
       </header>
       <main>
-        <div class="container-fluid">
+        <div class="container-fluid"> 
           @if(isset($error))
             <div class="alert alert-danger d-flex align-items-center" role="alert">
               <i class="bi bi-exclamation-triangle-fill me-2"></i>
@@ -332,7 +331,7 @@
 
           <div class="row g-4">
             <!-- Ticket Status Chart (Pie Chart) -->
-            <div class="col-md-12 col-lg-6">
+            <div class="col-md-6 col-lg-6">
               <div class="chart-card">
                 <div class="chart-title">
                   <i class="bi bi-pie-chart-fill chart-icon"></i>
@@ -345,7 +344,7 @@
             </div>
 
             <!-- Monthly Expenses Chart (Bar Chart) -->
-            <div class="col-md-12 col-lg-6">
+            <div class="col-md-6 col-lg-6">
               <div class="chart-card">
                 <div class="chart-title">
                   <i class="bi bi-bar-chart-fill chart-icon"></i>

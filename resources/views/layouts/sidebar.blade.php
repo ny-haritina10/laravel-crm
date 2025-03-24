@@ -11,25 +11,19 @@
   
   <div class="nav-section px-3">
     <div class="nav-section-header">
-        <span>Main Navigation</span>
+      <span>Main Navigation</span>
     </div>
     <ul class="nav-menu nav flex-column">
-        <li class="nav-item mb-2">
-            <a href="{{ route('dashboard.manager') }}" class="nav-link {{ request()->routeIs('dashboard') ? 'active' : '' }}">
-                <i class="bi bi-grid-1x2-fill me-2"></i>
-                <span>Dashboard</span>
-            </a>
-        </li>
-        <li class="nav-item mb-2">
-            <a href="{{ route('alerte-rate.index') }}" class="nav-link {{ request()->routeIs('alerte-rate.index') ? 'active' : '' }}">
-                <i class="bi bi-bell-fill me-2"></i>
-                <span>Alerte Rates</span>
-            </a>
-        </li>
+      <li class="nav-item mb-2">
+        <a href="{{ route('dashboard.manager')}}" class="nav-link {{ request()->routeIs('dashboard') ? 'active' : '' }}">
+          <i class="bi bi-grid-1x2-fill me-2"></i>
+          <span>Dashboard</span>
+        </a>
+      </li>
     </ul>
   </div>
   
-  <div class="mt-auto">
+  <div class="sidebar-footer">
     <hr class="sidebar-divider">
     <div class="logout-container px-3 pb-3">
       <form action="{{ route('logout') }}" method="post">
@@ -87,8 +81,13 @@
     box-shadow: 4px 0 10px rgba(0, 0, 0, 0.05);
     overflow-y: auto;
     transition: all 0.3s ease;
-    position: relative;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
     z-index: 100;
+    display: flex;
+    flex-direction: column;
   }
 
   .brand-container {
@@ -129,6 +128,11 @@
     margin: 0.5rem 0;
     border-color: rgba(255, 255, 255, 0.1);
     opacity: 0.5;
+  }
+
+  .nav-section {
+    flex: 1;
+    overflow-y: auto;
   }
 
   .nav-section-header {
@@ -181,6 +185,11 @@
     font-size: 0.7rem;
     font-weight: 600;
     padding: 0.35rem 0.65rem;
+  }
+
+  .sidebar-footer {
+    margin-top: auto;
+    width: 100%;
   }
 
   .logout-container {
@@ -274,6 +283,11 @@
     }
   }
 
+  /* Add margin to main content to accommodate fixed sidebar */
+  main {
+    margin-left: 280px;
+  }
+
   /* Responsive adjustments */
   @media (max-width: 768px) {
     .sidebar {
@@ -321,6 +335,10 @@
     .alert {
       left: 90px;
       max-width: 250px;
+    }
+    
+    main {
+      margin-left: 80px;
     }
   }
 </style>

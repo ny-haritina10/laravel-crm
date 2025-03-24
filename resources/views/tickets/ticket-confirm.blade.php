@@ -133,7 +133,6 @@
         <div class="d-flex justify-content-between align-items-center">
           <h1 class="mb-0">
             <i class="bi bi-ticket-detailed me-2"></i>
-            Confirm Ticket Expense
           </h1>
           <div class="user-info">
             <span class="me-2">Welcome, {{ session('username', 'Manager') }}</span>
