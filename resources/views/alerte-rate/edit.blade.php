@@ -89,7 +89,7 @@
                                     </div>
                                     <div class="d-flex justify-content-between">
                                         <button type="submit" class="btn btn-primary">Update Alerte Rate</button>
-                                        <a href="{{ route('dashboard') }}" class="btn btn-secondary">Cancel</a>
+                                        <a href="{{ route('dashboard.manager') }}" class="btn btn-secondary">Cancel</a>
                                     </div>
                                 </form>
 

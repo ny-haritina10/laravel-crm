@@ -28,7 +28,7 @@ class DashboardController extends Controller
 
     public function index()
     {
-        return view('main.dashboard');
+        return route('dashboard.manager');
     }
 
     public function managerDashboard(Request $request)

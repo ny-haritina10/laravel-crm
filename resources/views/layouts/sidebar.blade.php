@@ -20,6 +20,13 @@
           <span>Dashboard</span>
         </a>
       </li>
+
+      <li class="nav-item mb-2">
+        <a href="{{ route('alerte-rate.index') }}" class="nav-link {{ request()->routeIs('alerte-rate.index') ? 'active' : '' }}">
+          <i class="bi bi-bell-fill me-2"></i>
+          <span>Alerte Rates</span>
+        </a>
+      </li>
     </ul>
   </div>
   
