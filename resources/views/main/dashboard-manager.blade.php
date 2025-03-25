@@ -23,13 +23,8 @@
       background-color: #f5f7fa;
     }
 
-    .header {
-      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-      color: white;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-      padding: 1rem 1.5rem;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    }
+    .header { background-color: #2c3e50; color: white; border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
+
 
     h1 {
       font-weight: 600;
@@ -246,16 +241,14 @@
     @include('layouts.sidebar')
 
     <div class="flex-grow-1">
-      <header class="header">
+      <header class="header p-3">
         <div class="d-flex justify-content-between align-items-center">
-          <h1>
-            <i class="bi bi-layout-text-window-reverse me-2"></i>
+          <h1 class="mb-0">
+            <i class="bi bi-ticket-detailed me-2"></i>
           </h1>
           <div class="user-info">
-            <span class="d-none d-md-inline">Welcome, <strong>{{ session('username', 'Manager') }}</strong></span>
-            <div class="avatar">
-              <i class="bi bi-person-fill"></i>
-            </div>
+            <span class="me-2">Welcome, {{ session('username', 'Manager') }}</span>
+            <i class="bi bi-person-circle"></i>
           </div>
         </div>
       </header>
@@ -270,19 +263,19 @@
 
           <div class="row">
             <div class="col-md-12">
-              <div class="card welcome-card">
-                <div class="card-body p-4">
-                  <h5 class="card-title d-flex align-items-center">
-                    <i class="bi bi-stars me-2 text-primary"></i>
-                    Welcome to your Dashboard
-                  </h5>
-                  <p class="card-text">
-                    Hello, <strong>{{ session('username', 'Manager') }}</strong>! This is your control center for managing all aspects of your business. Use the sidebar navigation to access different sections of the application.
-                  </p>
+                <div class="card welcome-card">
+                    <div class="card-body p-4">
+                        <h5 class="card-title d-flex align-items-center">
+                            <i class="bi bi-graph-up me-2 text-success"></i>
+                            Comprehensive Total Data Overview
+                        </h5>
+                        <p class="card-text">
+                            Explore the aggregated total metrics for Leads and Tickets, providing a holistic view of your key performance indicators.
+                        </p>
+                    </div>
                 </div>
-              </div>
             </div>
-          </div>
+        </div>
           
           <!-- Modify the stats row section -->
           <div class="row g-2">
@@ -295,11 +288,11 @@
                             </div>
                             <div>
                                 <div class="stat-number">{{ $totalTickets }}</div>
-                                <div class="stat-label">Active Tickets</div>
+                                <div class="stat-label">Total Tickets</div>
                             </div>
                         </div>
                         <a href="{{ route('dashboard.tickets') }}" class="btn btn-details">
-                            <i class="bi bi-arrow-right-circle me-1"></i> Details
+                            <i class="bi bi-arrow-right-circle me-1"></i> See more
                         </a>
                     </div>
                 </div>
@@ -317,7 +310,7 @@
                             </div>
                         </div>
                         <a href="{{ route('dashboard.leads') }}" class="btn btn-details">
-                            <i class="bi bi-arrow-right-circle me-1"></i> Details
+                            <i class="bi bi-arrow-right-circle me-1"></i> See more
                         </a>
                     </div>
                 </div>
@@ -336,7 +329,7 @@
                           </div>
                       </div>
                       <a href="{{ route('dashboard.expenses') }}" class="btn btn-details">
-                          <i class="bi bi-arrow-right-circle me-1"></i> Details
+                          <i class="bi bi-arrow-right-circle me-1"></i> See more
                       </a>
                   </div>
               </div>
@@ -354,17 +347,46 @@
                           </div>
                       </div>
                       <a href="{{ route('dashboard.budgets') }}" class="btn btn-details">
-                          <i class="bi bi-arrow-right-circle me-1"></i> Details
+                          <i class="bi bi-arrow-right-circle me-1"></i> See more
                       </a>
                   </div>
               </div>
           </div>
           </div>
 
+          <div class="row">
+            <div class="col-md-12">
+                <div class="card welcome-card">
+                    <div class="card-body p-4">
+                        <h5 class="card-title d-flex align-items-center">
+                            <i class="bi bi-bar-chart-line me-2 text-info"></i>
+                            Data Visualization Dashboard
+                        </h5>
+                        <p class="card-text">
+                            Explore detailed visual representations of key metrics through interactive and comprehensive charts.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
           <!-- Analytics Section -->
           <div class="section-divider">
             <h2><i class="bi bi-bar-chart-line-fill"></i> Analytics</h2>
             <div class="line"></div>
+          </div>
+
+          <!-- Budget Evolution Chart (Line Chart) -->
+          <div class="col-md-12">
+            <div class="chart-card">
+              <div class="chart-title">
+                <i class="bi bi-graph-up chart-icon"></i>
+                Budget Evolution
+              </div>
+              <div class="chart-container">
+                <canvas id="budgetEvolutionChart"></canvas>
+              </div>
+            </div>
           </div>
 
           <div class="row g-4">
@@ -390,19 +412,6 @@
                 </div>
                 <div class="chart-container">
                   <canvas id="monthlyExpensesChart"></canvas>
-                </div>
-              </div>
-            </div>
-
-            <!-- Budget Evolution Chart (Line Chart) -->
-            <div class="col-md-12">
-              <div class="chart-card">
-                <div class="chart-title">
-                  <i class="bi bi-graph-up chart-icon"></i>
-                  Budget Evolution
-                </div>
-                <div class="chart-container">
-                  <canvas id="budgetEvolutionChart"></canvas>
                 </div>
               </div>
             </div>

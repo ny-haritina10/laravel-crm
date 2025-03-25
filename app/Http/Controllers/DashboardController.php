@@ -86,8 +86,16 @@ class DashboardController extends Controller
             
             return view('budgets.budgets-list', ['budgets' => $paginator]);
         } catch (\Exception $e) {
+            $paginator = new LengthAwarePaginator(
+                [], 
+                0, 
+                $this->perPage, 
+                1, 
+                ['path' => $request->url(), 'query' => $request->query()]
+            );
+            
             return view('budgets.budgets-list', [
-                'budgets' => [],
+                'budgets' => $paginator,
                 'error' => 'Error connecting to CRM: ' . $e->getMessage()
             ]);
         }
@@ -119,8 +127,17 @@ class DashboardController extends Controller
             
             return view('expenses.expenses-list', ['expenses' => $paginator]);
         } catch (\Exception $e) {
+            // Return an empty paginator instead of an empty array
+            $paginator = new LengthAwarePaginator(
+                [], 
+                0, 
+                $this->perPage, 
+                1, 
+                ['path' => $request->url(), 'query' => $request->query()]
+            );
+            
             return view('expenses.expenses-list', [
-                'expenses' => [],
+                'expenses' => $paginator,
                 'error' => 'Error connecting to CRM: ' . $e->getMessage()
             ]);
         }
@@ -152,8 +169,17 @@ class DashboardController extends Controller
             
             return view('tickets.tickets-list', ['tickets' => $paginator]);
         } catch (\Exception $e) {
+            // Return an empty paginator instead of an empty array
+            $paginator = new LengthAwarePaginator(
+                [], 
+                0, 
+                $this->perPage, 
+                1, 
+                ['path' => $request->url(), 'query' => $request->query()]
+            );
+            
             return view('tickets.tickets-list', [
-                'tickets' => [],
+                'tickets' => $paginator,
                 'error' => 'Error connecting to CRM: ' . $e->getMessage()
             ]);
         }
@@ -185,8 +211,17 @@ class DashboardController extends Controller
             
             return view('leads.leads-list', ['leads' => $paginator]);
         } catch (\Exception $e) {
+            // Return an empty paginator instead of an empty array
+            $paginator = new LengthAwarePaginator(
+                [], 
+                0, 
+                $this->perPage, 
+                1, 
+                ['path' => $request->url(), 'query' => $request->query()]
+            );
+            
             return view('leads.leads-list', [
-                'leads' => [],
+                'leads' => $paginator,
                 'error' => 'Error connecting to CRM: ' . $e->getMessage()
             ]);
         }

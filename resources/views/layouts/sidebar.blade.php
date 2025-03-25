@@ -4,14 +4,14 @@
       <div class="brand-icon me-2">
         <i class="bi bi-layers-fill"></i>
       </div>
-      <span class="brand-text">New-App</span>
+      <span class="brand-text">CRM</span>
     </a>
   </div>
   <hr class="sidebar-divider">
   
   <div class="nav-section px-3">
     <div class="nav-section-header">
-      <span>Main Navigation</span>
+      <span>Sidebar - Nav</span>
     </div>
     <ul class="nav-menu nav flex-column">
       <li class="nav-item mb-2">
