@@ -284,42 +284,79 @@
             </div>
           </div>
           
-          <div class="row g-4">
-            <div class="col-md-12 col-lg-6">
-              <div class="stat-card">
-                <div class="card-body p-4 d-flex align-items-center justify-content-between">
-                  <div class="d-flex align-items-center">
-                    <div class="stat-icon me-4">
-                      <i class="bi bi-ticket-perforated-fill"></i>
+          <!-- Modify the stats row section -->
+          <div class="row g-2">
+            <div class="col-md-6 col-lg-6">
+                <div class="stat-card">
+                    <div class="card-body p-4 d-flex align-items-center justify-content-between">
+                        <div class="d-flex align-items-center">
+                            <div class="stat-icon me-4">
+                                <i class="bi bi-ticket-perforated-fill"></i>
+                            </div>
+                            <div>
+                                <div class="stat-number">{{ $totalTickets }}</div>
+                                <div class="stat-label">Active Tickets</div>
+                            </div>
+                        </div>
+                        <a href="{{ route('dashboard.tickets') }}" class="btn btn-details">
+                            <i class="bi bi-arrow-right-circle me-1"></i> Details
+                        </a>
                     </div>
-                    <div>
-                      <div class="stat-number">{{ $totalTickets }}</div>
-                      <div class="stat-label">Active Tickets</div>
-                    </div>
-                  </div>
-                  <a href="{{ route('dashboard.tickets') }}" class="btn btn-details">
-                    <i class="bi bi-arrow-right-circle me-1"></i> Details
-                  </a>
                 </div>
-              </div>
             </div>
-            <div class="col-md-12 col-lg-6">
-              <div class="stat-card">
-                <div class="card-body p-4 d-flex align-items-center justify-content-between">
-                  <div class="d-flex align-items-center">
-                    <div class="stat-icon me-4">
-                      <i class="bi bi-people-fill"></i>
+            <div class="col-md-6 col-lg-6">
+                <div class="stat-card">
+                    <div class="card-body p-4 d-flex align-items-center justify-content-between">
+                        <div class="d-flex align-items-center">
+                            <div class="stat-icon me-4">
+                                <i class="bi bi-people-fill"></i>
+                            </div>
+                            <div>
+                                <div class="stat-number">{{ $totalLeads }}</div>
+                                <div class="stat-label">Potential Leads</div>
+                            </div>
+                        </div>
+                        <a href="{{ route('dashboard.leads') }}" class="btn btn-details">
+                            <i class="bi bi-arrow-right-circle me-1"></i> Details
+                        </a>
                     </div>
-                    <div>
-                      <div class="stat-number">{{ $totalLeads }}</div>
-                      <div class="stat-label">Potential Leads</div>
-                    </div>
-                  </div>
-                  <a href="{{ route('dashboard.leads') }}" class="btn btn-details">
-                    <i class="bi bi-arrow-right-circle me-1"></i> Details
-                  </a>
                 </div>
-              </div>
+            </div>
+            <div class="col-md-6 col-lg-6">
+                <div class="stat-card">
+                    <div class="card-body p-4 d-flex align-items-center justify-content-between">
+                        <div class="d-flex align-items-center">
+                            <div class="stat-icon me-4" style="background: linear-gradient(45deg, #f72585, #b5179e);">
+                                <i class="bi bi-currency-dollar"></i>
+                            </div>
+                            <div>
+                                <div class="stat-number">${{ $totalExpenses }}</div>
+                                <div class="stat-label">Total Expenses</div>
+                            </div>
+                        </div>
+                      <a href="{{ route('dashboard.expenses') }}" class="btn btn-details">
+                        <i class="bi bi-arrow-right-circle me-1"></i> Details
+                      </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-6">
+                <div class="stat-card">
+                    <div class="card-body p-4 d-flex align-items-center justify-content-between">
+                        <div class="d-flex align-items-center">
+                            <div class="stat-icon me-4" style="background: linear-gradient(45deg, #4cc9f0, #4895ef);">
+                                <i class="bi bi-wallet2"></i>
+                            </div>
+                            <div>
+                                <div class="stat-number">${{ $totalBudget }}</div>
+                                <div class="stat-label">Total Budget</div>
+                            </div>
+                        </div>
+                        <a href="{{ route('dashboard.budgets') }}" class="btn btn-details">
+                          <i class="bi bi-arrow-right-circle me-1"></i> Details
+                        </a>
+                    </div>
+                </div>
             </div>
           </div>
 
@@ -378,7 +415,6 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
   <script>
-    // Get token from wherever it's stored (example: localStorage)
     const token = localStorage.getItem('auth_token') || '{{ session('token') }}';
     console.log('Token being used:', token);
 

@@ -39,15 +39,88 @@ class DashboardController extends Controller
         }
 
         try {
-            $counts = $this->dashboardService->getDashboardCounts($token);
+            $counts = $this->dashboardService->getDashboardCounts($token);            
+            $totalExpenses = $this->dashboardService->getTotalExpense($token);
+            $totalBudget = $this->dashboardService->getTotalBudget($token);
+
             return view('main.dashboard-manager', [
                 'totalTickets' => $counts['totalTickets'] ?? 0,
-                'totalLeads' => $counts['totalLeads'] ?? 0
+                'totalLeads' => $counts['totalLeads'] ?? 0,
+                'totalExpenses' => $totalExpenses['expenses'] ?? 0,
+                'totalBudget' => $totalBudget['totalBudget'] ?? 0
             ]);
         } catch (\Exception $e) {
             return view('main.dashboard-manager', [
                 'totalTickets' => 0,
                 'totalLeads' => 0,
+                'totalExpenses' => 0,
+                'totalBudget' => 0,
+                'error' => 'Error connecting to CRM: ' . $e->getMessage()
+            ]);
+        }
+    }
+
+    public function budgetsList(Request $request)
+    {
+        $token = Session::get('token');
+        if (!$token) {
+            return redirect()->route('login')->withErrors(['auth' => 'Please login first']);
+        }
+
+        try {
+            $budgets = $this->dashboardService->getAllBudgets($token);
+            
+            // Create pagination from array
+            $page = $request->get('page', 1);
+            $perPage = $request->get('per_page', $this->perPage);
+            $offset = ($page - 1) * $perPage;
+            
+            $items = array_slice($budgets, $offset, $perPage, true);
+            $paginator = new LengthAwarePaginator(
+                $items,
+                count($budgets),
+                $perPage,
+                $page,
+                ['path' => $request->url(), 'query' => $request->query()]
+            );
+            
+            return view('budgets.budgets-list', ['budgets' => $paginator]);
+        } catch (\Exception $e) {
+            return view('budgets.budgets-list', [
+                'budgets' => [],
+                'error' => 'Error connecting to CRM: ' . $e->getMessage()
+            ]);
+        }
+    }
+
+    public function expensesList(Request $request)
+    {
+        $token = Session::get('token');
+        if (!$token) {
+            return redirect()->route('login')->withErrors(['auth' => 'Please login first']);
+        }
+
+        try {
+            $expenses = $this->dashboardService->getAllExpenses($token);
+            
+            // Create pagination from array
+            $page = $request->get('page', 1);
+            $perPage = $request->get('per_page', $this->perPage);
+            $offset = ($page - 1) * $perPage;
+            
+            $items = array_slice($expenses, $offset, $perPage, true);
+            $paginator = new LengthAwarePaginator(
+                $items,
+                count($expenses),
+                $perPage,
+                $page,
+                ['path' => $request->url(), 'query' => $request->query()]
+            );
+            
+            return view('expenses.expenses-list', ['expenses' => $paginator]);
+        } catch (\Exception $e) {
+            return view('expenses.expenses-list', [
+                'expenses' => [],
                 'error' => 'Error connecting to CRM: ' . $e->getMessage()
             ]);
         }

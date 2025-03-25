@@ -48,5 +48,8 @@ Route::middleware(['crm.auth'])->group(function () {
         Route::put('/alerte-rate/{id}', [AlerteRateController::class, 'update'])->name('alerte-rate.update');
         Route::delete('/alerte-rate/{id}', [AlerteRateController::class, 'destroy'])->name('alerte-rate.destroy');
         Route::get('/alerte-rate', [AlerteRateController::class, 'index'])->name('alerte-rate.index');
+
+        Route::get('/dashboard/budgets', [DashboardController::class, 'budgetsList'])->name('dashboard.budgets');
+        Route::get('/dashboard/expenses', [DashboardController::class, 'expensesList'])->name('dashboard.expenses');
     });
 });
