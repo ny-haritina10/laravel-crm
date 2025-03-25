@@ -322,42 +322,43 @@
                     </div>
                 </div>
             </div>
+            
             <div class="col-md-6 col-lg-6">
-                <div class="stat-card">
-                    <div class="card-body p-4 d-flex align-items-center justify-content-between">
-                        <div class="d-flex align-items-center">
-                            <div class="stat-icon me-4" style="background: linear-gradient(45deg, #f72585, #b5179e);">
-                                <i class="bi bi-currency-dollar"></i>
-                            </div>
-                            <div>
-                                <div class="stat-number">${{ $totalExpenses }}</div>
-                                <div class="stat-label">Total Expenses</div>
-                            </div>
-                        </div>
+              <div class="stat-card">
+                  <div class="card-body p-4 d-flex align-items-center justify-content-between">
+                      <div class="d-flex align-items-center">
+                          <div class="stat-icon me-4" style="background: linear-gradient(45deg, #f72585, #b5179e);">
+                              <i class="bi bi-currency-dollar"></i>
+                          </div>
+                          <div>
+                              <div class="stat-number">${{ number_format($totalExpenses, 2, '.', ',') }}</div>
+                              <div class="stat-label">Total Expenses</div>
+                          </div>
+                      </div>
                       <a href="{{ route('dashboard.expenses') }}" class="btn btn-details">
-                        <i class="bi bi-arrow-right-circle me-1"></i> Details
-                      </a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-6">
-                <div class="stat-card">
-                    <div class="card-body p-4 d-flex align-items-center justify-content-between">
-                        <div class="d-flex align-items-center">
-                            <div class="stat-icon me-4" style="background: linear-gradient(45deg, #4cc9f0, #4895ef);">
-                                <i class="bi bi-wallet2"></i>
-                            </div>
-                            <div>
-                                <div class="stat-number">${{ $totalBudget }}</div>
-                                <div class="stat-label">Total Budget</div>
-                            </div>
-                        </div>
-                        <a href="{{ route('dashboard.budgets') }}" class="btn btn-details">
                           <i class="bi bi-arrow-right-circle me-1"></i> Details
-                        </a>
-                    </div>
-                </div>
-            </div>
+                      </a>
+                  </div>
+              </div>
+          </div>
+          <div class="col-md-6 col-lg-6">
+              <div class="stat-card">
+                  <div class="card-body p-4 d-flex align-items-center justify-content-between">
+                      <div class="d-flex align-items-center">
+                          <div class="stat-icon me-4" style="background: linear-gradient(45deg, #4cc9f0, #4895ef);">
+                              <i class="bi bi-wallet2"></i>
+                          </div>
+                          <div>
+                              <div class="stat-number">${{ number_format($totalBudget, 2, '.', ',') }}</div>
+                              <div class="stat-label">Total Budget</div>
+                          </div>
+                      </div>
+                      <a href="{{ route('dashboard.budgets') }}" class="btn btn-details">
+                          <i class="bi bi-arrow-right-circle me-1"></i> Details
+                      </a>
+                  </div>
+              </div>
+          </div>
           </div>
 
           <!-- Analytics Section -->
