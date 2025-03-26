@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\AlerteRateController;
+use App\Http\Controllers\ImportDuplicateController;
 
 /*
 |--------------------------------------------------------------------------
@@ -51,5 +52,8 @@ Route::middleware(['crm.auth'])->group(function () {
 
         Route::get('/dashboard/budgets', [DashboardController::class, 'budgetsList'])->name('dashboard.budgets');
         Route::get('/dashboard/expenses', [DashboardController::class, 'expensesList'])->name('dashboard.expenses');
+
+        Route::get('/import', [ImportDuplicateController::class, 'index'])->name('import.index');
+        Route::post('/import/submit', [ImportDuplicateController::class, 'submit'])->name('import.submit');
     });
 });

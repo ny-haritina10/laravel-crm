@@ -96,3 +96,19 @@ i want you to display 3 chart based on those API endpoint on a laravel blade vie
     . evolution budget des customers
 
 here are the dashboard controller and blade view : 
+
+
+
+- Existant
+    - Exporter
+
+- New-App
+    - Import REST API
+
+
+- Dupliquer
+Customer:
+    - Lead
+    - Ticket 
+    - Expense
+    - CustomerBudget

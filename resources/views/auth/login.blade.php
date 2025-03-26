@@ -8,14 +8,14 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet">
   <style>
     :root {
-      --primary-color: #4361ee;
-      --secondary-color: #3f37c9;
-      --accent-color: #4895ef;
-      --light-color: #f8f9fa;
-      --dark-color: #212529;
-      --success-color: #4cc9f0;
-      --warning-color: #f72585;
-      --info-color: #560bad;
+      --primary-color: #6B48FF;    /* Vibrant purple */
+      --secondary-color: #3D28B3;  /* Deep purple */
+      --accent-color: #897CFF;     /* Light purple */
+      --light-color: #F6F8FC;      /* Soft off-white */
+      --dark-color: #2A2D3E;       /* Dark slate */
+      --success-color: #40C4B7;    /* Teal */
+      --warning-color: #FF6B81;    /* Coral */
+      --info-color: #4A90E2;       /* Bright blue */
     }
     
     body {
@@ -24,13 +24,12 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
+      background: linear-gradient(135deg, var(--light-color) 0%, #E8ECF4 100%);
       padding: 2rem 1rem;
       position: relative;
       overflow: hidden;
     }
     
-    /* Decorative background elements */
     body::before {
       content: '';
       position: absolute;
@@ -38,7 +37,7 @@
       height: 500px;
       border-radius: 50%;
       background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-      opacity: 0.05;
+      opacity: 0.08;
       top: -250px;
       left: -250px;
     }
@@ -50,14 +49,14 @@
       height: 300px;
       border-radius: 50%;
       background: linear-gradient(135deg, var(--info-color), var(--success-color));
-      opacity: 0.05;
+      opacity: 0.08;
       bottom: -150px;
       right: -150px;
     }
     
     .login-container {
       width: 100%;
-      max-width: 450px;
+      max-width: 900px;
       position: relative;
       z-index: 10;
     }
@@ -66,18 +65,32 @@
       border: none;
       border-radius: 20px;
       overflow: hidden;
-      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 15px 30px rgba(42, 45, 62, 0.1);
       background-color: white;
       animation: fadeIn 0.6s ease-out;
+      display: flex;
+      flex-direction: row;
+      min-height: 450px;
     }
     
     .card-header {
       background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
       color: white;
-      text-align: center;
-      padding: 2rem 0;
+      padding: 2rem;
       border-bottom: none;
-      height: 220px;
+      width: 40%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    
+    .card-body {
+      padding: 2.5rem;
+      width: 60%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
     }
     
     .app-logo {
@@ -104,16 +117,14 @@
       font-size: 1.8rem;
       font-weight: 700;
       margin: 0;
+      text-align: center;
     }
     
     .login-subtitle {
       font-size: 1rem;
-      opacity: 0.8;
+      opacity: 0.9;
       margin-top: 0.5rem;
-    }
-    
-    .card-body {
-      padding: 2.5rem;
+      text-align: center;
     }
     
     .form-label {
@@ -126,7 +137,7 @@
     .form-control {
       height: 50px;
       border-radius: 10px;
-      border: 2px solid #e2e8f0;
+      border: 2px solid #E2E8F0;
       padding-left: 1rem;
       font-size: 1rem;
       transition: all 0.3s ease;
@@ -134,16 +145,16 @@
     
     .form-control:focus {
       border-color: var(--primary-color);
-      box-shadow: 0 0 0 0.25rem rgba(67, 97, 238, 0.1);
+      box-shadow: 0 0 0 0.25rem rgba(107, 72, 255, 0.1);
     }
     
     .input-group-text {
-      background-color: #f8fafc;
-      border: 2px solid #e2e8f0;
+      background-color: var(--light-color);
+      border: 2px solid #E2E8F0;
       border-right: none;
       border-top-left-radius: 10px;
       border-bottom-left-radius: 10px;
-      color: #64748b;
+      color: #64748B;
     }
     
     .input-group .form-control {
@@ -171,13 +182,13 @@
       height: 50px;
       font-weight: 600;
       letter-spacing: 0.5px;
-      box-shadow: 0 4px 6px rgba(67, 97, 238, 0.2);
+      box-shadow: 0 4px 6px rgba(107, 72, 255, 0.2);
       transition: all 0.3s ease;
     }
     
     .btn-primary:hover {
       transform: translateY(-2px);
-      box-shadow: 0 8px 12px rgba(67, 97, 238, 0.25);
+      box-shadow: 0 8px 12px rgba(107, 72, 255, 0.25);
       background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
     }
     
@@ -192,37 +203,10 @@
     }
     
     .alert-danger {
-      background-color: #fee2e2;
-      color: #991b1b;
+      background-color: #FFEBEE;
+      color: #B71C1C;
     }
     
-    /* Remember me and forgot password */
-    .form-footer {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 1.5rem;
-    }
-    
-    .form-check-input:checked {
-      background-color: var(--primary-color);
-      border-color: var(--primary-color);
-    }
-    
-    .forgot-password {
-      color: var(--primary-color);
-      font-size: 0.9rem;
-      text-decoration: none;
-      font-weight: 500;
-      transition: all 0.2s ease;
-    }
-    
-    .forgot-password:hover {
-      color: var(--secondary-color);
-      text-decoration: underline;
-    }
-    
-    /* Animations */
     @keyframes fadeIn {
       from {
         opacity: 0;
@@ -240,12 +224,24 @@
       20%, 40%, 60%, 80% { transform: translateX(5px); }
     }
     
-    /* Responsive adjustments */
-    @media (max-width: 576px) {
-      .card-body {
-        padding: 1.5rem;
+    @media (max-width: 768px) {
+      .card {
+        flex-direction: column;
+        min-height: auto;
       }
       
+      .card-header {
+        width: 100%;
+        padding: 2rem 0;
+      }
+      
+      .card-body {
+        width: 100%;
+        padding: 1.5rem;
+      }
+    }
+    
+    @media (max-width: 576px) {
       .app-name {
         font-size: 1.5rem;
       }
@@ -270,8 +266,8 @@
             <i class="bi bi-layers-fill logo-icon"></i>
           </div>
         </div>
-        <h1 class="app-name">New-App</h1>
-        <p class="login-subtitle">Manager Portal</p>
+        <h1 class="app-name">CRM-App</h1>
+        <p class="login-subtitle">Login to the CRM-App back office</p>
       </div>
       <div class="card-body">
         @if ($errors->has('auth'))
@@ -284,7 +280,7 @@
         <form action="{{ route('login') }}" method="post" id="loginForm">
           @csrf
           <div class="mb-4">
-            <label for="username" class="form-label">Username or Email</label>
+            <label for="username" class="form-label">Username </label>
             <div class="input-group">
               <span class="input-group-text">
                 <i class="bi bi-person-fill"></i>

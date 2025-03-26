@@ -4,27 +4,35 @@
       <div class="brand-icon me-2">
         <i class="bi bi-layers-fill"></i>
       </div>
-      <span class="brand-text">New-App</span>
+      <span class="brand-text">Manager - CRM</span>
     </a>
   </div>
+  
   <hr class="sidebar-divider">
   
   <div class="nav-section px-3">
     <div class="nav-section-header">
-      <span>Main Navigation</span>
+      <span>Sidebar - Nav</span>
     </div>
     <ul class="nav-menu nav flex-column">
       <li class="nav-item mb-2">
         <a href="{{ route('dashboard.manager')}}" class="nav-link {{ request()->routeIs('dashboard') ? 'active' : '' }}">
-          <i class="bi bi-grid-1x2-fill me-2"></i>
-          <span>Dashboard</span>
+          <i class="bi bi-house-door-fill me-2"></i> 
+          <span>Tableau de bord</span> 
         </a>
       </li>
 
       <li class="nav-item mb-2">
         <a href="{{ route('alerte-rate.index') }}" class="nav-link {{ request()->routeIs('alerte-rate.index') ? 'active' : '' }}">
-          <i class="bi bi-bell-fill me-2"></i>
-          <span>Alerte Rates</span>
+          <i class="bi bi-exclamation-triangle-fill me-2"></i> 
+          <span>Configuration Seuil</span> 
+        </a>
+      </li>
+
+      <li class="nav-item mb-2">
+        <a href="{{ route('import.index') }}" class="nav-link {{ request()->routeIs('alerte-rate.index') ? 'active' : '' }}">
+          <i class="bi bi-files me-2"></i> 
+          <span>Import duplication</span> 
         </a>
       </li>
     </ul>

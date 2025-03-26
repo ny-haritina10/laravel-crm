@@ -18,15 +18,19 @@ class TicketService
     /**
      * Get all tickets from the CRM API
      */
-    public function getAllTickets(string $token): array
+    public function getAllTickets(string $token, ?string $priority = null, ?string $startDate = null): array
     {
+        $query = [];
+        if ($priority) $query['priority'] = $priority;
+        if ($startDate) $query['startDate'] = $startDate;
+
         $response = Http::withHeaders([
             'Authorization' => 'Bearer ' . $token,
             'Accept' => 'application/json'
-        ])->get($this->crmApiUrl . '/api/expenses/tickets');
+        ])->get($this->crmApiUrl . '/api/expenses/tickets', $query);
 
         if ($response->successful()) {
-            return $response->json();
+            return $response->json() ?? [];
         }
 
         throw new \Exception('Failed to fetch tickets: ' . $response->body());

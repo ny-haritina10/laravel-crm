@@ -86,8 +86,16 @@ class DashboardController extends Controller
             
             return view('budgets.budgets-list', ['budgets' => $paginator]);
         } catch (\Exception $e) {
+            $paginator = new LengthAwarePaginator(
+                [], 
+                0, 
+                $this->perPage, 
+                1, 
+                ['path' => $request->url(), 'query' => $request->query()]
+            );
+            
             return view('budgets.budgets-list', [
-                'budgets' => [],
+                'budgets' => $paginator,
                 'error' => 'Error connecting to CRM: ' . $e->getMessage()
             ]);
         }
@@ -119,8 +127,17 @@ class DashboardController extends Controller
             
             return view('expenses.expenses-list', ['expenses' => $paginator]);
         } catch (\Exception $e) {
+            // Return an empty paginator instead of an empty array
+            $paginator = new LengthAwarePaginator(
+                [], 
+                0, 
+                $this->perPage, 
+                1, 
+                ['path' => $request->url(), 'query' => $request->query()]
+            );
+            
             return view('expenses.expenses-list', [
-                'expenses' => [],
+                'expenses' => $paginator,
                 'error' => 'Error connecting to CRM: ' . $e->getMessage()
             ]);
         }
@@ -134,26 +151,40 @@ class DashboardController extends Controller
         }
 
         try {
-            $tickets = $this->ticketService->getAllTickets($token);
+            $priority = $request->input('priority');
+            $startDate = $request->input('start_date');
+
+            $tickets = $this->ticketService->getAllTickets($token, $priority, $startDate);
             
-            // Create pagination from array
             $page = $request->get('page', 1);
             $perPage = $request->get('per_page', $this->perPage);
             $offset = ($page - 1) * $perPage;
             
             $items = array_slice($tickets, $offset, $perPage, true);
             $paginator = new LengthAwarePaginator(
-                $items, 
-                count($tickets), 
-                $perPage, 
-                $page, 
+                $items,
+                count($tickets),
+                $perPage,
+                $page,
                 ['path' => $request->url(), 'query' => $request->query()]
             );
             
-            return view('tickets.tickets-list', ['tickets' => $paginator]);
-        } catch (\Exception $e) {
             return view('tickets.tickets-list', [
-                'tickets' => [],
+                'tickets' => $paginator,
+                'priority' => $priority,
+                'start_date' => $startDate
+            ]);
+        } catch (\Exception $e) {
+            $paginator = new LengthAwarePaginator(
+                [],
+                0,
+                $this->perPage,
+                1,
+                ['path' => $request->url(), 'query' => $request->query()]
+            );
+            
+            return view('tickets.tickets-list', [
+                'tickets' => $paginator,
                 'error' => 'Error connecting to CRM: ' . $e->getMessage()
             ]);
         }
@@ -185,8 +216,17 @@ class DashboardController extends Controller
             
             return view('leads.leads-list', ['leads' => $paginator]);
         } catch (\Exception $e) {
+            // Return an empty paginator instead of an empty array
+            $paginator = new LengthAwarePaginator(
+                [], 
+                0, 
+                $this->perPage, 
+                1, 
+                ['path' => $request->url(), 'query' => $request->query()]
+            );
+            
             return view('leads.leads-list', [
-                'leads' => [],
+                'leads' => $paginator,
                 'error' => 'Error connecting to CRM: ' . $e->getMessage()
             ]);
         }
