@@ -2,9 +2,9 @@
   <div class="brand-container p-3">
     <a href="{{ route('dashboard.manager')}}" class="brand-link d-flex align-items-center text-decoration-none">
       <div class="brand-icon me-2">
-        <i class="bi bi-building-fill"></i> <!-- Changed from bi-layers-fill -->
+        <i class="bi bi-layers-fill"></i>
       </div>
-      <span class="brand-text">Admin Hub</span> <!-- Changed from Manager - CRM -->
+      <span class="brand-text">Manager - CRM</span>
     </a>
   </div>
   
@@ -17,15 +17,22 @@
     <ul class="nav-menu nav flex-column">
       <li class="nav-item mb-2">
         <a href="{{ route('dashboard.manager')}}" class="nav-link {{ request()->routeIs('dashboard') ? 'active' : '' }}">
-          <i class="bi bi-house-door-fill me-2"></i> <!-- Changed from bi-grid-1x2-fill -->
-          <span>Tableau de bord</span> <!-- Changed from Dashboard -->
+          <i class="bi bi-house-door-fill me-2"></i> 
+          <span>Tableau de bord</span> 
         </a>
       </li>
 
       <li class="nav-item mb-2">
         <a href="{{ route('alerte-rate.index') }}" class="nav-link {{ request()->routeIs('alerte-rate.index') ? 'active' : '' }}">
-          <i class="bi bi-exclamation-triangle-fill me-2"></i> <!-- Changed from bi-bell-fill -->
-          <span>Configuration Seuil</span> <!-- Changed from Alerte Rates -->
+          <i class="bi bi-exclamation-triangle-fill me-2"></i> 
+          <span>Configuration Seuil</span> 
+        </a>
+      </li>
+
+      <li class="nav-item mb-2">
+        <a href="{{ route('import.index') }}" class="nav-link {{ request()->routeIs('alerte-rate.index') ? 'active' : '' }}">
+          <i class="bi bi-files me-2"></i> 
+          <span>Import duplication</span> 
         </a>
       </li>
     </ul>

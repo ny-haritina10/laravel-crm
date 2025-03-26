@@ -25,7 +25,7 @@ class DashboardService
         ])->get($this->crmApiUrl . '/api/dashboard/counts');
 
         if ($response->successful()) {
-            return $response->json();
+            return $response->json() ?? [];
         }
 
         throw new \Exception('Failed to fetch dashboard data: ' . $response->body());
@@ -39,7 +39,7 @@ class DashboardService
         ])->get($this->crmApiUrl . '/api/dashboard/total_expenses');
 
         if ($response->successful()) {
-            return $response->json();
+            return $response->json() ?? [];
         }
 
         throw new \Exception('Failed to fetch dashboard data: ' . $response->body());
@@ -53,7 +53,7 @@ class DashboardService
         ])->get($this->crmApiUrl . '/api/dashboard/total_budget');
 
         if ($response->successful()) {
-            return $response->json();
+            return $response->json() ?? [];
         }
 
         throw new \Exception('Failed to fetch dashboard data: ' . $response->body());
