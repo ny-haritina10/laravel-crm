@@ -151,30 +151,35 @@ class DashboardController extends Controller
         }
 
         try {
-            $tickets = $this->ticketService->getAllTickets($token);
+            $priority = $request->input('priority');
+            $startDate = $request->input('start_date');
+
+            $tickets = $this->ticketService->getAllTickets($token, $priority, $startDate);
             
-            // Create pagination from array
             $page = $request->get('page', 1);
             $perPage = $request->get('per_page', $this->perPage);
             $offset = ($page - 1) * $perPage;
             
             $items = array_slice($tickets, $offset, $perPage, true);
             $paginator = new LengthAwarePaginator(
-                $items, 
-                count($tickets), 
-                $perPage, 
-                $page, 
+                $items,
+                count($tickets),
+                $perPage,
+                $page,
                 ['path' => $request->url(), 'query' => $request->query()]
             );
             
-            return view('tickets.tickets-list', ['tickets' => $paginator]);
+            return view('tickets.tickets-list', [
+                'tickets' => $paginator,
+                'priority' => $priority,
+                'start_date' => $startDate
+            ]);
         } catch (\Exception $e) {
-            // Return an empty paginator instead of an empty array
             $paginator = new LengthAwarePaginator(
-                [], 
-                0, 
-                $this->perPage, 
-                1, 
+                [],
+                0,
+                $this->perPage,
+                1,
                 ['path' => $request->url(), 'query' => $request->query()]
             );
             

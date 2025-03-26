@@ -306,7 +306,7 @@
                             </div>
                             <div>
                                 <div class="stat-number">{{ $totalLeads }}</div>
-                                <div class="stat-label">Potential Leads</div>
+                                <div class="stat-label">Total Leads</div>
                             </div>
                         </div>
                         <a href="{{ route('dashboard.leads') }}" class="btn btn-details">
@@ -494,7 +494,7 @@
           const colors = generateColors(data.length);
 
           new Chart(document.getElementById('ticketStatusChart'), {
-            type: 'pie',
+            type: 'doughnut',
             data: {
               labels: labels,
               datasets: [{ data: values, backgroundColor: colors, borderWidth: 1 }]
@@ -534,8 +534,8 @@
               datasets: [{
                 label: 'Total Expenses',
                 data: values,
-                backgroundColor: '#4361ee',
-                borderColor: '#3f37c9',
+                backgroundColor: '#FFA500',
+                borderColor: '#FF8C00',
                 borderWidth: 1
               }]
             },

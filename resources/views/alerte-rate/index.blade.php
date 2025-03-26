@@ -40,16 +40,16 @@
 
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title">Alerte Rate List</h5>
+                            <h5 class="card-title">Seuil de configuration</h5>
                             @if (empty($alerteRates))
                                 <p>No Alerte Rates found.</p>
                             @else
                                 <table class="table">
                                     <thead>
                                         <tr>
-                                            <th>ID</th>
-                                            <th>Percentage</th>
-                                            <th>Date</th>
+                                            <th>#</th>
+                                            <th>Percentage %</th>
+                                            <th>Date configuration</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -62,7 +62,7 @@
                                                 <td>
                                                     <a href="{{ route('alerte-rate.edit', $alerteRate['alerteRateId']) }}" 
                                                        class="btn btn-sm btn-primary">
-                                                        <i class="bi bi-pencil-fill"></i> Edit
+                                                        <i class="bi bi-pencil-fill"></i> Configurer
                                                     </a>
                                                 </td>
                                             </tr>

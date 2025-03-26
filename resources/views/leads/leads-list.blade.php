@@ -72,6 +72,7 @@
                 <thead>
                   <tr>
                     <th>ID</th>
+                    <th>Customer</th>
                     <th>Name</th>
                     <th>Status</th>
                     <th>Phone</th>
@@ -85,6 +86,7 @@
                   @forelse ($leads as $lead)
                     <tr>
                       <td>{{ $lead['leadId'] }}</td>
+                      <td>CL-{{ $lead['customerId'] }}</td>
                       <td>{{ $lead['name'] }}</td>
                       <td>
                         @php

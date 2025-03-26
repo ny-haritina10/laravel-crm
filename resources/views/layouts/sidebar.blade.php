@@ -2,11 +2,12 @@
   <div class="brand-container p-3">
     <a href="{{ route('dashboard.manager')}}" class="brand-link d-flex align-items-center text-decoration-none">
       <div class="brand-icon me-2">
-        <i class="bi bi-layers-fill"></i>
+        <i class="bi bi-building-fill"></i> <!-- Changed from bi-layers-fill -->
       </div>
-      <span class="brand-text">CRM</span>
+      <span class="brand-text">Admin Hub</span> <!-- Changed from Manager - CRM -->
     </a>
   </div>
+  
   <hr class="sidebar-divider">
   
   <div class="nav-section px-3">
@@ -16,15 +17,15 @@
     <ul class="nav-menu nav flex-column">
       <li class="nav-item mb-2">
         <a href="{{ route('dashboard.manager')}}" class="nav-link {{ request()->routeIs('dashboard') ? 'active' : '' }}">
-          <i class="bi bi-grid-1x2-fill me-2"></i>
-          <span>Dashboard</span>
+          <i class="bi bi-house-door-fill me-2"></i> <!-- Changed from bi-grid-1x2-fill -->
+          <span>Tableau de bord</span> <!-- Changed from Dashboard -->
         </a>
       </li>
 
       <li class="nav-item mb-2">
         <a href="{{ route('alerte-rate.index') }}" class="nav-link {{ request()->routeIs('alerte-rate.index') ? 'active' : '' }}">
-          <i class="bi bi-bell-fill me-2"></i>
-          <span>Alerte Rates</span>
+          <i class="bi bi-exclamation-triangle-fill me-2"></i> <!-- Changed from bi-bell-fill -->
+          <span>Configuration Seuil</span> <!-- Changed from Alerte Rates -->
         </a>
       </li>
     </ul>

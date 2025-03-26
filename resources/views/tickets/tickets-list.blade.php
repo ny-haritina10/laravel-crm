@@ -91,6 +91,34 @@
             <div class="alert alert-danger">{{ $error }}</div>
           @endif
 
+          <div class="card mb-3">
+            <div class="card-body">
+              <form method="GET" action="{{ route('dashboard.tickets') }}" class="row g-2">
+                  <div class="col-md-3">
+                      <label for="priority" class="form-label">Priority</label>
+                      <select name="priority" id="priority" class="form-select">
+                        <option value="">All Priorities</option>
+                        <option value="high" {{ (isset($priority) && $priority === 'high') ? 'selected' : '' }}>High</option>
+                        <option value="medium" {{ (isset($priority) && $priority === 'medium') ? 'selected' : '' }}>Medium</option>
+                        <option value="low" {{ (isset($priority) && $priority === 'low') ? 'selected' : '' }}>Low</option>
+                        <option value="closed" {{ (isset($priority) && $priority === 'closed') ? 'selected' : '' }}>Closed</option>
+                        <option value="urgent" {{ (isset($priority) && $priority === 'urgent') ? 'selected' : '' }}>Urgent</option>
+                        <option value="critical" {{ (isset($priority) && $priority === 'critical') ? 'selected' : '' }}>Critical</option>
+                      </select>
+                  </div>
+                  <div class="col-md-4">
+                      <label for="start_date" class="form-label">Date Filter</label>
+                      <input type="date" name="start_date" id="start_date" class="form-control" 
+                            value="{{ $start_date ?? '' }}">
+                  </div>
+                  <div class="col-md-4 d-flex align-items-end">
+                      <button type="submit" class="btn btn-primary me-2">Filter</button>
+                      <a href="{{ route('dashboard.tickets') }}" class="btn btn-secondary">Clear</a>
+                  </div>
+              </form>
+            </div>
+          </div>
+
           <div class="card">
             <div class="card-header bg-white d-flex justify-content-between align-items-center py-3">
               <h5 class="mb-0">All Tickets</h5>
@@ -100,6 +128,7 @@
                 <thead>
                   <tr>
                     <th>ID</th>
+                    <th>ID Customer</th>
                     <th>Subject</th>
                     <th>Status</th>
                     <th>Priority</th>
@@ -112,6 +141,7 @@
                   @forelse ($tickets as $ticket)
                     <tr>
                       <td>{{ $ticket['ticketId'] }}</td>
+                      <td>CL-{{ $ticket['customerId']}} </td>
                       <td>{{ $ticket['subject'] }}</td>
                       <td>
                         @php
