@@ -1,5 +1,5 @@
-# CRM APP new App
+# CRM New App
 
 ## CRM 
 
-This a the new app built in top of the Spring-Boot existing App
+This is the new app built in top of the Spring-Boot existing App
