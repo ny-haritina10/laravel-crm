@@ -24,7 +24,7 @@ class ImportDuplicateController extends Controller
 
             $token = Session::get('token');
             if (!$token) {
-                return redirect()->back()->with('error', 'Please login to CRM first');
+                return redirect()->route('login')->withErrors(['auth' => 'Please login first']);
             }
 
             $file = $request->file('file');
